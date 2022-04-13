@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Date객체</h2>
+    <h2 id="cal"></h2>
+    <h2 id="clock"></h2>
+    <script>
+    var date1 = new Date(89,12,25);
+    var date2 = new Date(89,12,25,15,43,12);
+    var date3 = new Date("1998/07/28");
+    var date4 = new Date("1998-07-28");
+    var date5 = new Date("1998-07-28T15:43:12");
+    var date6 = new Date("28 Jul 1998");
+    var date7 = new Date("July 28 1998");
+
+    var today = new Date();
+
+    calender();
+    var intv0 = setInterval(function(){calender;},1000*60);
+        
+    function calender(){
+        today=new Date();    
+        var year = today.getFullYear();
+        var month= today.getMonth();
+        var date= today.getDate();
+        var day= today.getDay();
+        var w =["일","월","화","수","금","토","일"];
+    //document.write("오늘의 요일: "+w[day]);
+        var cal = document.getElementById("cal");
+        cal.innerHTML = year+"년 "+month+"월 "+date+"일("+w[day]+")";
+    }
+    var time=today.getTime();
+    
+    timming();
+    var intv = setInterval(function(){timming();},1000);
+    
+    function timming(){
+        var timer = new Date();
+        var hour =timer.getHours();
+        var minute= timer.getMinutes();
+        var second= timer.getSeconds();
+        var ampm;
+        if(hour>=12){
+            ampm="PM";
+            hour-=12;
+        }else{
+            ampm="AM";
+        }
+        if(hour<=9){
+            hour="0"+hour;
+        }
+        if(minute<=9){
+            minute="0"+minute;
+        }
+        if(second<=9){
+            second="0"+second;
+        }
+        var clock = document.getElementById("clock");
+        clock.innerHTML = ampm+" "+hour+":"+minute+":"+second;
+    }
+    </script>
+</body>
+</html>
